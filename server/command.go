@@ -254,7 +254,7 @@ var textmojis = []moji{
 	moji{words: []string{"shout"}, ascii: "╚(•⌂•)╝"},
 	moji{words: []string{"shrug"}, ascii: "¯\\_(ツ)_/¯"},
 	moji{words: []string{"shy"}, ascii: "=^_^="},
-	moji{words: []string{"sigma", "sum"}, ascii: "Σ"},
+	moji{words: []string{"sigma"}, ascii: "Σ"},
 	moji{words: []string{"skull"}, ascii: "☠"},
 	moji{words: []string{"smile"}, ascii: "ツ"},
 	moji{words: []string{"smiley"}, ascii: "☺︎"},
