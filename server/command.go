@@ -1,6 +1,7 @@
 package main
 
 import (
+	"sort"
 	"strings"
 
 	"github.com/mattermost/mattermost-server/v5/model"
@@ -347,11 +348,19 @@ func (p *Plugin) ExecuteCommand(c *plugin.Context, args *model.CommandArgs) (*mo
 func getAutocompleteData() *model.AutocompleteData {
 	textmoji := model.NewAutocompleteData("textmoji", "[textmoji-name] [extra-text]", "Draw a text based emoji")
 
+	autocompletions := []*model.AutocompleteData{}
 	for _, value := range textmojis {
 		for _, word := range value.words {
-			autocomp := model.NewAutocompleteData(word, "[extra-text]", value.ascii)
-			textmoji.AddCommand(autocomp)
+			autocompletions = append(autocompletions, model.NewAutocompleteData(word, "[extra-text]", value.ascii))
 		}
+	}
+
+	sort.Slice(autocompletions, func(i, j int) bool {
+		return autocompletions[i].Trigger < autocompletions[j].Trigger
+	})
+
+	for _, autocomp := range autocompletions {
+		textmoji.AddCommand(autocomp)
 	}
 	return textmoji
 }
