@@ -334,6 +334,8 @@ func (p *Plugin) ExecuteCommand(c *plugin.Context, args *model.CommandArgs) (*mo
 					Message:   textmoji.ascii + strings.TrimPrefix(args.Command, command+" "+action),
 					UserId:    args.UserId,
 					ChannelId: args.ChannelId,
+					ParentId:  args.ParentId,
+					RootId:    args.RootId,
 				})
 				return &model.CommandResponse{}, nil
 			}
